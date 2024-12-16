@@ -17,7 +17,8 @@ namespace embree
       return nullptr;
     
     assert((align & (align-1)) == 0);
-    void* ptr = _mm_malloc(size,align);
+    void* ptr = nullptr;
+    posix_memalign(&ptr, size, align);
 
     if (size != 0 && ptr == nullptr)
       throw std::bad_alloc();
@@ -28,7 +29,7 @@ namespace embree
   void alignedFree(void* ptr)
   {
     if (ptr)
-      _mm_free(ptr);
+      free(ptr);
   }
 }
 

@@ -61,7 +61,9 @@
 #define ISA NEON
 #define ISA_STR "NEON"
 #else
-#error Unknown ISA
+#  define isa sse
+#  define ISA UNKNOWN
+#  define ISA_STR "UNKNOWN"
 #endif
 
 namespace embree
@@ -151,6 +153,7 @@ namespace embree
   std::string supportedTargetList (int isa);
 
   /*! ISAs */
+  static const int UNKNOWN= 0; 
   static const int SSE    = CPU_FEATURE_SSE | CPU_FEATURE_XMM_ENABLED; 
   static const int SSE2   = SSE | CPU_FEATURE_SSE2;
   static const int SSE3   = SSE2 | CPU_FEATURE_SSE3;

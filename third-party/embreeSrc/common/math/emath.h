@@ -15,9 +15,11 @@
 #if defined(__ARM_NEON)
 #include "../simd/arm/emulation.h"
 #else
-#include <emmintrin.h>
-#include <xmmintrin.h>
-#include <immintrin.h>
+#define SIMDE_ENABLE_NATIVE_ALIASES 1
+#include <simde/x86/avx2.h>
+#include <simde/x86/fma.h>
+#include <simde/x86/sse.h>
+#include <simde/x86/sse2.h>
 #endif
 
 #if defined(__WIN32__)

@@ -58,9 +58,7 @@
 #endif
 
 /* detect 64 bit platform */
-#if defined(__X86_64__) || defined(__aarch64__)
 #define __64BIT__
-#endif
 
 /* detect Linux platform */
 #if defined(linux) || defined(__linux__) || defined(__LINUX__)
@@ -613,3 +611,7 @@ namespace embree
   }
 
 }
+
+// Follows: https://github.com/RenderKit/openpgl/blob/f4828a906354e2037438ce4f9976ff7c4191f666/CMakeLists.txt#L64
+#define __AVX__
+#define __SSE4_2__

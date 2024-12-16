@@ -12,7 +12,9 @@
 #if defined(__ARM_NEON)
 #include "../simd/arm/emulation.h"
 #else
-#include <immintrin.h>
+#define SIMDE_ENABLE_NATIVE_ALIASES 1
+#include <simde/x86/avx2.h>
+#include <simde/x86/fma.h>
 #if defined(__EMSCRIPTEN__)
 #include "../simd/wasm/emulation.h"
 #endif
@@ -477,16 +479,16 @@ namespace embree
 #if defined(__SSE4_2__) || defined(__ARM_NEON)
   
   __forceinline int popcnt(int in) {
-    return _mm_popcnt_u32(in);
+    return __builtin_popcount(in);
   }
   
   __forceinline unsigned popcnt(unsigned in) {
-    return _mm_popcnt_u32(in);
+    return __builtin_popcount(in);
   }
   
 #if defined(__64BIT__)
   __forceinline size_t popcnt(size_t in) {
-    return _mm_popcnt_u64(in);
+    return __builtin_popcount(in);
   }
 #endif
   

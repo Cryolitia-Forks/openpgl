@@ -9,7 +9,8 @@
 #if defined(__ARM_NEON)
 #include "../simd/arm/emulation.h"
 #else
-#include <xmmintrin.h>
+#define SIMDE_ENABLE_NATIVE_ALIASES 1
+#include <simde/x86/sse.h>
 #if defined(__EMSCRIPTEN__)
 #include "../simd/wasm/emulation.h"
 #endif
